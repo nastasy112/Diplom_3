@@ -1,0 +1,51 @@
+import clients.UserClient;
+import jdk.jfr.Description;
+import models.User;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class PersonalAccountPage extends BrowserStarter{
+    User user;
+    UserClient userClient;
+    String accessToken;
+
+    @Before
+    public void setUp(){
+        userClient = new UserClient();
+        user = User.getRandom();
+        accessToken= userClient.create(user);
+    }
+
+    @After
+    public void deleteUser(){
+        if(accessToken != null) {
+            userClient.delete(accessToken);
+        }
+    }
+
+    //Проверь переход по клику на «Личный кабинет».
+    @Test
+    @Description("Login via the 'Log in to account' button")
+    public void successfulLoginViaLoginToAccountButton() {
+        // нажать кнопку Войти в аккаунт
+        // ввести почту и пароль
+        // нажать кнопку входа
+        // нажать на кнопку личного кабинета
+        // проверить данные в личном кабинете
+        PageObjectClass.PersonalAccountPage personalAccountPage = mainPage
+                .clickLogInToYourAccountBtn()
+                .login(user.getEmail(), user.getPassword())
+                .clickPersonalAccountBtn();
+
+        final boolean isPersonalAccountPageDisplayedCorrect = personalAccountPage
+                .isProfileBtnDisplayed();
+        assertTrue("Переход в личный кабинет после аутентификации не выполнен", isPersonalAccountPageDisplayedCorrect);
+        // проверка правильности отображения имени и почты в личном кабинете
+        assertEquals(personalAccountPage.getNameValue(), user.getName());
+        assertEquals(personalAccountPage.getLoginValue(), user.getEmail());
+    }
+}
