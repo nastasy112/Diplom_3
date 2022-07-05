@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class PersonalAccountPage extends MainPage{
 
-    @FindBy(how = How.XPATH, using = "//*[contains(@name, 'Name')]")
+    @FindBy(how = How.NAME, using = "Name")
     private SelenideElement nameInput;
 
-    @FindBy(how = How.XPATH, using = "//*[contains(@name, 'name')][1]")
+    @FindBy(how = How.NAME, using = "name")
     private SelenideElement loginInput;
 
     @FindBy(how = How.XPATH, using = ".//a[@href='/account/profile']")
