@@ -1,4 +1,4 @@
-package PageObjectClass;
+package page_object_class;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
 
-    public final static String mainPageURL = "https://stellarburgers.nomoreparties.site/";
+    public final static String MAIN_PAGE_URL = "https://stellarburgers.nomoreparties.site/";
 
     @FindBy(how = How.XPATH, using = ".//a[@href='/account']")
     private SelenideElement personalAccountBtn;
