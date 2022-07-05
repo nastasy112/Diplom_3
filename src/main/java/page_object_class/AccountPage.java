@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class AccountPage {
 
-    @FindBy(how = How.XPATH, using = ".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg']")
+    @FindBy(how = How.XPATH, using = ".//button[text()='Оформить заказ']")
     private SelenideElement createOrderButton;
 
     @FindBy(how = How.XPATH, using = ".//a[@href='/account']")
