@@ -16,7 +16,7 @@ public class ConstuctorTest extends BrowserStarter{
         // нажать кнопку Булки
         // проверить отображение ингредиентов - булки
         final boolean isGetBunsCorrect = mainPage
-                .isGetIngredientsCorrect(0, "булка");
+                .isHeaderBunDisplayed();
         assertTrue("Ошибка отображения булок", isGetBunsCorrect);
     }
 
@@ -27,7 +27,7 @@ public class ConstuctorTest extends BrowserStarter{
         // проверить отображение ингредиентов - соусы
         final boolean isGetSaucesCorrect = mainPage
                 .clickSaucesBtn()
-                .isGetIngredientsCorrect(3, "Соус");
+                .isHeaderSauceDisplayed();
         assertTrue("Ошибка отображения соусов", isGetSaucesCorrect);
     }
 
@@ -38,7 +38,7 @@ public class ConstuctorTest extends BrowserStarter{
         // проверить отображение ингредиентов - начинки
         final boolean isGetFillingsCorrect = mainPage
                 .clickFillingBtn()
-                .isGetIngredientsCorrect(6, "Мясо");
+                .isHeaderFillingDisplayed();
         assertTrue("Ошибка отображения начинок", isGetFillingsCorrect);
     }
 }

@@ -36,7 +36,7 @@ public class PersonalAccountPage extends BrowserStarter{
         // нажать кнопку входа
         // нажать на кнопку личного кабинета
         // проверить данные в личном кабинете
-        PageObjectClass.PersonalAccountPage personalAccountPage = mainPage
+        page_object_class.PersonalAccountPage personalAccountPage = mainPage
                 .clickLogInToYourAccountBtn()
                 .login(user.getEmail(), user.getPassword())
                 .clickPersonalAccountBtn();

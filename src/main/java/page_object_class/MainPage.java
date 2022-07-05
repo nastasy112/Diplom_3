@@ -24,17 +24,23 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//div[@class='AppHeader_header__logo__2D0X2']")
     private SelenideElement logoBtn;
 
-    @FindBy(how = How.XPATH, using = ".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Булки']")
+    @FindBy(how = How.XPATH, using = ".//span[text()='Булки']")
     private SelenideElement bunsBtn;
 
-    @FindBy(how = How.XPATH, using = ".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Соусы']")
+    @FindBy(how = How.XPATH, using = ".//span[text()='Соусы']")
     private SelenideElement saucesBtn;
 
-    @FindBy(how = How.XPATH, using = ".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']")
+    @FindBy(how = How.XPATH, using = ".//span[text()='Начинки']")
     private SelenideElement fillingsBtn;
 
-    @FindBy(how = How.CLASS_NAME, using = "BurgerIngredient_ingredient__text__yp3dH")
-    private ElementsCollection ingredientsCollection;
+    @FindBy(how = How.XPATH, using = ".//h2[text()='Булки']")
+    private SelenideElement headerBun;
+
+    @FindBy(how = How.XPATH, using = ".//h2[text()='Соусы']")
+    private SelenideElement headerSauce;
+
+    @FindBy(how = How.XPATH, using = "//h2[text()='Начинки']")
+    private SelenideElement headerFilling;
 
     public LoginPage clickPersonalAccountBtn(){
         personalAccountBtn.scrollIntoView(true);
@@ -78,8 +84,21 @@ public class MainPage {
         return this;
     }
 
-    public boolean isGetIngredientsCorrect(int index, String nameIngredients){
-        ingredientsCollection.get(index).shouldBe(Condition.visible);
-        return ingredientsCollection.get(index).getText().contains(nameIngredients);
+    public boolean isHeaderBunDisplayed(){
+        headerBun.scrollIntoView(true);
+        headerBun.shouldBe(Condition.exist);
+        return headerBun.isDisplayed();
+    }
+
+    public boolean isHeaderSauceDisplayed(){
+        headerSauce.scrollIntoView(true);
+        headerSauce.shouldBe(Condition.exist);
+        return headerSauce.isDisplayed();
+    }
+
+    public boolean isHeaderFillingDisplayed(){
+        headerFilling.scrollIntoView(true);
+        headerFilling.shouldBe(Condition.exist);
+        return headerFilling.isDisplayed();
     }
 }

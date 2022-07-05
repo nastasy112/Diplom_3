@@ -1,10 +1,10 @@
-import PageObjectClass.MainPage;
+import page_object_class.MainPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.After;
 import org.junit.Before;
 
-import static PageObjectClass.MainPage.mainPageURL;
+import static page_object_class.MainPage.MAIN_PAGE_URL;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BrowserStarter {
@@ -18,7 +18,7 @@ public class BrowserStarter {
 //        driver = new ChromeDriver();
 //        WebDriverRunner.setWebDriver(driver);
 
-        mainPage = Selenide.open(mainPageURL, MainPage.class);
+        mainPage = Selenide.open(MAIN_PAGE_URL, MainPage.class);
         Configuration.browserSize = "1980x1000";
     }
 
