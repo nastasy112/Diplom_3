@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class LogoutTest extends BrowserStarter{
+public class LogoutTest extends BrowserStarter {
     //Выход из аккаунта
     //Проверь выход по кнопке «Выйти» в личном кабинете.
 
@@ -16,16 +16,16 @@ public class LogoutTest extends BrowserStarter{
     String accessToken;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
         user = User.getRandom();
-        accessToken= userClient.create(user);
+        accessToken = userClient.createUser(user);
     }
 
     @After
-    public void deleteUser(){
-        if(accessToken != null) {
-            userClient.delete(accessToken);
+    public void deleteUser() {
+        if (accessToken != null) {
+            userClient.deleteUser(accessToken);
         }
     }
 
@@ -37,10 +37,11 @@ public class LogoutTest extends BrowserStarter{
         // нажать кнопку входа
         // нажать на кнопку личного кабинета
         // нажать на кнопку выхода
+
         final boolean isLogoutCorrect = mainPage
                 .clickLogInToYourAccountBtn()
                 .login(user.getEmail(), user.getPassword())
-                .clickPersonalAccountBtn()
+                .clickPersonalAccountBtnFromAccount()
                 .clickLogoutBtn()
                 .isLoginBtnDisplayed();
         assertTrue("Ошибка выхода из личного кабинета", isLogoutCorrect);

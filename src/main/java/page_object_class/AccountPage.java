@@ -6,8 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
-public class AccountPage {
+public class AccountPage extends MainPage {
 
     @FindBy(how = How.XPATH, using = ".//button[text()='Оформить заказ']")
     private SelenideElement createOrderButton;
@@ -15,15 +16,14 @@ public class AccountPage {
     @FindBy(how = How.XPATH, using = ".//a[@href='/account']")
     private SelenideElement personalAccountBtn;
 
-    public boolean isCreateOrderBtnDisplayed(){
-        createOrderButton.scrollIntoView(true);
-        createOrderButton.shouldBe(Condition.exist);
-        return createOrderButton.isDisplayed();
-    }
-
-    public PersonalAccountPage clickPersonalAccountBtn(){
+    public PersonalAccountPage clickPersonalAccountBtnFromAccount() {
         personalAccountBtn.scrollIntoView(true);
         personalAccountBtn.click();
         return page(PersonalAccountPage.class);
+    }
+
+    public boolean isUrlCorrectAfterLogin() {
+        createOrderButton.shouldBe(Condition.visible);
+        return url().equals(MAIN_PAGE_URL);
     }
 }

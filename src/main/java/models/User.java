@@ -12,7 +12,7 @@ public class User {
     String password;
 
     // фабрика
-    public static User getRandom(){
+    public static User getRandom() {
         String name = RandomStringUtils.randomAlphanumeric(8);
         String email = RandomStringUtils.randomAlphanumeric(10) + "@yandex.ru";
         String password = RandomStringUtils.randomAlphanumeric(6);

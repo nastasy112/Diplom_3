@@ -11,7 +11,7 @@ public class RecoverPasswordPage {
     @FindBy(how = How.XPATH, using = ".//a[@href='/login']")
     private SelenideElement loginBtn;
 
-    public LoginPage clickLoginBtn(){
+    public LoginPage clickLoginBtn() {
         loginBtn.scrollIntoView(true);
         loginBtn.click();
         return page(LoginPage.class);

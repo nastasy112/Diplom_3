@@ -10,22 +10,22 @@ import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class PersonalAccountPage extends BrowserStarter{
+public class PersonalAccountPage extends BrowserStarter {
     User user;
     UserClient userClient;
     String accessToken;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
         user = User.getRandom();
-        accessToken= userClient.create(user);
+        accessToken = userClient.createUser(user);
     }
 
     @After
-    public void deleteUser(){
-        if(accessToken != null) {
-            userClient.delete(accessToken);
+    public void deleteUser() {
+        if (accessToken != null) {
+            userClient.deleteUser(accessToken);
         }
     }
 
@@ -41,7 +41,7 @@ public class PersonalAccountPage extends BrowserStarter{
         page_object_class.PersonalAccountPage personalAccountPage = mainPage
                 .clickLogInToYourAccountBtn()
                 .login(user.getEmail(), user.getPassword())
-                .clickPersonalAccountBtn();
+                .clickPersonalAccountBtnFromAccount();
 
         final boolean isPersonalAccountPageDisplayedCorrect = personalAccountPage
                 .isProfileBtnDisplayed();

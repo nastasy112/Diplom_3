@@ -11,10 +11,10 @@ public class LoginPage {
     @FindBy(how = How.NAME, using = "name")
     private SelenideElement nameInput;
 
-    @FindBy(how = How.NAME, using = "Пароль")
+    @FindBy(how = How.XPATH, using = ".//input[@type='password']")
     private SelenideElement passwordInput;
 
-    @FindBy(how = How.XPATH, using = ".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa']")
+    @FindBy(how = How.XPATH, using = ".//button[text()='Войти']")
     private SelenideElement loginSubmit;
 
     @FindBy(how = How.XPATH, using = ".//a[@href='/register']")
@@ -31,32 +31,32 @@ public class LoginPage {
         passwordInput.setValue(password);
     }
 
-    public AccountPage clickLoginBtn(){
+    public AccountPage clickLoginBtn() {
         loginSubmit.scrollIntoView(true);
         loginSubmit.click();
         return page(AccountPage.class);
     }
 
-    public RecoverPasswordPage clickRecoverPasswordBtn(){
+    public RecoverPasswordPage clickRecoverPasswordBtn() {
         recoverPasswordBtn.scrollIntoView(true);
         recoverPasswordBtn.click();
         return page(RecoverPasswordPage.class);
     }
 
-    public AccountPage login(String name, String password){
+    public AccountPage login(String name, String password) {
         setName(name);
         setPassword(password);
         clickLoginBtn();
         return page(AccountPage.class);
     }
 
-    public RegistrationPage clickSignupBtn(){
+    public RegistrationPage clickSignupBtn() {
         signupBtn.scrollIntoView(true);
         signupBtn.click();
         return page(RegistrationPage.class);
     }
 
-    public boolean isLoginBtnDisplayed(){
+    public boolean isLoginBtnDisplayed() {
         loginSubmit.scrollIntoView(true);
         loginSubmit.shouldBe(Condition.exist);
         return loginSubmit.isDisplayed();

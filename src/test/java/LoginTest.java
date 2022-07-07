@@ -7,22 +7,22 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class LoginTest extends BrowserStarter{
+public class LoginTest extends BrowserStarter {
     User user;
     UserClient userClient;
     String accessToken;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
         user = User.getRandom();
-        accessToken= userClient.create(user);
+        accessToken = userClient.createUser(user);
     }
 
     @After
-    public void deleteUser(){
-        if(accessToken != null) {
-            userClient.delete(accessToken);
+    public void deleteUser() {
+        if (accessToken != null) {
+            userClient.deleteUser(accessToken);
         }
     }
 
@@ -37,7 +37,7 @@ public class LoginTest extends BrowserStarter{
         final boolean isLoginCompletedViaLogInToAccount = mainPage
                 .clickLogInToYourAccountBtn()
                 .login(user.getEmail(), user.getPassword())
-                .isCreateOrderBtnDisplayed();
+                .isUrlCorrectAfterLogin();
         assertTrue("Аутентификация через кнопку 'Войти в аккаунт' пользователя завершилась ошибкой", isLoginCompletedViaLogInToAccount);
     }
 
@@ -48,11 +48,12 @@ public class LoginTest extends BrowserStarter{
         // нажать кнопку Личный кабинет
         // ввести почту и пароль
         // нажать кнопку входа
+        // проверить url страницы после аутентификации
 
         final boolean isLoginCompletedViaPersonalAccount = mainPage
                 .clickPersonalAccountBtn()
                 .login(user.getEmail(), user.getPassword())
-                .isCreateOrderBtnDisplayed();
+                .isUrlCorrectAfterLogin();
         assertTrue("Аутентификация через личный кабинет пользователя завершилась ошибкой", isLoginCompletedViaPersonalAccount);
     }
 
@@ -65,13 +66,14 @@ public class LoginTest extends BrowserStarter{
         // нажать кнопку Войти
         // ввести почту и пароль
         // нажать кнопку входа
+        // проверить url страницы после аутентификации
 
         final boolean isLoginCompletedViaSignPage = mainPage
                 .clickPersonalAccountBtn()
                 .clickSignupBtn()
                 .clickLoginBtn()
                 .login(user.getEmail(), user.getPassword())
-                .isCreateOrderBtnDisplayed();
+                .isUrlCorrectAfterLogin();
         assertTrue("Аутентификация со страницы регистрации пользователя завершилась ошибкой", isLoginCompletedViaSignPage);
     }
 
@@ -84,13 +86,14 @@ public class LoginTest extends BrowserStarter{
         // нажать кнопку Войти
         // ввести почту и пароль
         // нажать кнопку входа
+        // проверить url страницы после аутентификации
 
         final boolean isLoginCompletedViaRecoverPasswordPage = mainPage
                 .clickPersonalAccountBtn()
                 .clickRecoverPasswordBtn()
                 .clickLoginBtn()
                 .login(user.getEmail(), user.getPassword())
-                .isCreateOrderBtnDisplayed();
+                .isUrlCorrectAfterLogin();
         assertTrue("Аутентификация со страницы восстановления пароля завершилась ошибкой", isLoginCompletedViaRecoverPasswordPage);
     }
 }

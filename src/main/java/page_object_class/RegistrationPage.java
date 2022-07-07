@@ -22,7 +22,7 @@ public class RegistrationPage {
     private SelenideElement signupSubmit;
 
     @FindBy(how = How.XPATH, using = ".//p[@class='input__error text_type_main-default']")
-    private SelenideElement passwordHasInvalidLenght;
+    private SelenideElement passwordHasInvalidLength;
 
     @FindBy(how = How.XPATH, using = ".//a[@href='/login']")
     private SelenideElement loginBtn;
@@ -39,13 +39,13 @@ public class RegistrationPage {
         passwordInput.setValue(password).pressEnter();
     }
 
-    public LoginPage clickSignupSubmit(){
+    public LoginPage clickSignupSubmit() {
         signupSubmit.scrollIntoView(true);
         signupSubmit.click();
         return page(LoginPage.class);
     }
 
-    public LoginPage signup(User user){
+    public LoginPage signup(User user) {
         setName(user.getName());
         setEmail(user.getEmail());
         setPassword(user.getPassword());
@@ -53,7 +53,7 @@ public class RegistrationPage {
         return page(LoginPage.class);
     }
 
-    public RegistrationPage signupWithError(User user){
+    public RegistrationPage signupWithError(User user) {
         setName(user.getName());
         setEmail(user.getEmail());
         setPassword(user.getPassword());
@@ -61,14 +61,14 @@ public class RegistrationPage {
         return this;
     }
 
-    public boolean isPasswordErrorCorrect(){
-        passwordHasInvalidLenght.scrollIntoView(true);
-        passwordHasInvalidLenght.shouldBe(Condition.visible);
-        passwordHasInvalidLenght.isDisplayed();
-        return passwordHasInvalidLenght.getText().equals("Некорректный пароль");
+    public boolean isPasswordErrorCorrect() {
+        passwordHasInvalidLength.scrollIntoView(true);
+        passwordHasInvalidLength.shouldBe(Condition.visible);
+        passwordHasInvalidLength.isDisplayed();
+        return passwordHasInvalidLength.getText().equals("Некорректный пароль");
     }
 
-    public LoginPage clickLoginBtn(){
+    public LoginPage clickLoginBtn() {
         loginBtn.scrollIntoView(true);
         loginBtn.click();
         return page(LoginPage.class);

@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class ConstuctorTest extends BrowserStarter{
+public class ConstuctorTest extends BrowserStarter {
     //Раздел «Конструктор»
     //Проверь, что работают переходы к разделам:
     //«Булки»,
@@ -14,9 +14,9 @@ public class ConstuctorTest extends BrowserStarter{
     @Description("checkBuns")
     public void checkBuns() {
         // нажать кнопку Булки
-        // проверить отображение ингредиентов - булки
+        // проверить отображение заголовка после нажатия кнопки - булки
         final boolean isGetBunsCorrect = mainPage
-                .isHeaderBunDisplayed();
+                .isIngredientsCorrect("Булки");
         assertTrue("Ошибка отображения булок", isGetBunsCorrect);
     }
 
@@ -24,10 +24,10 @@ public class ConstuctorTest extends BrowserStarter{
     @Description("checkSauces")
     public void checkSauces() {
         // нажать кнопку Соусы
-        // проверить отображение ингредиентов - соусы
+        // проверить отображение заголовка после нажатия кнопки - соусы
         final boolean isGetSaucesCorrect = mainPage
                 .clickSaucesBtn()
-                .isHeaderSauceDisplayed();
+                .isIngredientsCorrect("Соусы");
         assertTrue("Ошибка отображения соусов", isGetSaucesCorrect);
     }
 
@@ -35,10 +35,10 @@ public class ConstuctorTest extends BrowserStarter{
     @Description("checkFillings")
     public void checkFillings() {
         // нажать кнопку Начинки
-        // проверить отображение ингредиентов - начинки
+        // проверить отображение заголовка после нажатия кнопки - начинки
         final boolean isGetFillingsCorrect = mainPage
                 .clickFillingBtn()
-                .isHeaderFillingDisplayed();
+                .isIngredientsCorrect("Начинки");
         assertTrue("Ошибка отображения начинок", isGetFillingsCorrect);
     }
 }

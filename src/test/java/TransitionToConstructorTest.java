@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class TransitionToConstructorTest extends BrowserStarter{
+public class TransitionToConstructorTest extends BrowserStarter {
     // Переход из личного кабинета в конструктор
     // Проверь переход по клику на «Конструктор» и на логотип Stellar Burgers.
 
@@ -16,16 +16,16 @@ public class TransitionToConstructorTest extends BrowserStarter{
     String accessToken;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
         user = User.getRandom();
-        accessToken= userClient.create(user);
+        accessToken = userClient.createUser(user);
     }
 
     @After
-    public void deleteUser(){
-        if(accessToken != null) {
-            userClient.delete(accessToken);
+    public void deleteUser() {
+        if (accessToken != null) {
+            userClient.deleteUser(accessToken);
         }
     }
 
@@ -40,9 +40,9 @@ public class TransitionToConstructorTest extends BrowserStarter{
         final boolean isTransitionToConstructorViaConstructorBtnCorrect = mainPage
                 .clickLogInToYourAccountBtn()
                 .login(user.getEmail(), user.getPassword())
-                .clickPersonalAccountBtn()
+                .clickPersonalAccountBtnFromAccount()
                 .clickConstructorBtn()
-                .isCreateOrderBtnDisplayed();
+                .isBunsBtnDisplayed();
         assertTrue("Переход из личного кабинета в конструтор через кнопку 'Конструктор' не выполнен или выполнен некорректно", isTransitionToConstructorViaConstructorBtnCorrect);
     }
 
@@ -57,9 +57,9 @@ public class TransitionToConstructorTest extends BrowserStarter{
         final boolean isTransitionToConstructorViaLogoBtnCorrect = mainPage
                 .clickLogInToYourAccountBtn()
                 .login(user.getEmail(), user.getPassword())
-                .clickPersonalAccountBtn()
+                .clickPersonalAccountBtnFromAccount()
                 .clickLogoBtn()
-                .isCreateOrderBtnDisplayed();
+                .isBunsBtnDisplayed();
         assertTrue("Переход из личного кабинета в конструтор при нажатии на логотип не выполнен или выполнен некорректно", isTransitionToConstructorViaLogoBtnCorrect);
     }
 }
